@@ -1,31 +1,13 @@
-import { Stack } from "expo-router";
+// app/_layout.tsx
+import { Slot } from "expo-router";
+import { View } from "react-native";
+import { colors } from "../components/theme"; // ajustá la ruta si difiere
 
-export default function ProtectedLayout() {
+export default function RootLayout() {
   return (
-    <Stack
-      // 🔒 Oculta el header nativo en TODAS las pantallas de este grupo
-      screenOptions={{ headerShown: false }}
-    >
-      {/* Pantallas “normales” */}
-      <Stack.Screen name="home" />
-      <Stack.Screen name="profile" />
-      <Stack.Screen name="help" />
-      <Stack.Screen name="terms" />
-      <Stack.Screen name="settings" />
-      <Stack.Screen name="edit-profile" />
-      {/* Seguridad como carpeta (menú) + cambiar */}
-      <Stack.Screen name="security/index" />
-      <Stack.Screen name="security/change" />
-      <Stack.Screen name="password-changed" />
-
-      {/* Modales (logout) sobre la pantalla actual */}
-      <Stack.Screen
-        name="(modals)/logout"
-        options={{
-          presentation: "transparentModal",
-          animation: "fade",
-        }}
-      />
-    </Stack>
+    // Fondo global para TODA la app (incluyendo áreas seguras)
+    <View style={{ flex: 1, backgroundColor: colors.bg }}>
+      <Slot />
+    </View>
   );
 }
