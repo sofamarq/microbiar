@@ -17,6 +17,8 @@ export default function ProtectedLayout() {
       <Stack.Screen name="security/index" />
       <Stack.Screen name="security/change" />
       <Stack.Screen name="password-changed" />
+      <Stack.Screen name="recipes" />
+      <Stack.Screen name="recipe-detail" />
 
       {/* Modales (logout) sobre la pantalla actual */}
       <Stack.Screen
