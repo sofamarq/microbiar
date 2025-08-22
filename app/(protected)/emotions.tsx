@@ -72,7 +72,7 @@ export default function Emotions() {
         <View
           style={{
             paddingHorizontal: SIDE,
-            paddingTop: 26,              // ↓ más abajo que antes
+            paddingTop: 50,              // ↓ más abajo que antes
             alignItems: "center",
           }}
         >
@@ -83,7 +83,7 @@ export default function Emotions() {
               textAlign: "center",
               fontSize: 17,              // ↑ más grande
               lineHeight: 22,
-              marginBottom: 130,
+              marginBottom: 110,
             }}
           >
             Deslizá Para Leer La Devolución{"\n"}Del Equipo De Bienestar
@@ -95,7 +95,7 @@ export default function Emotions() {
               width: 240,
               height: 240,
               borderRadius: 120,
-              backgroundColor: "#E8F6ED",
+              backgroundColor: "#DFF5E7",
               alignItems: "center",
               justifyContent: "center",
               shadowColor: "#000",
@@ -120,7 +120,9 @@ export default function Emotions() {
         <View style={{ paddingHorizontal: SIDE, paddingTop: 18 }}>
           <View
             style={{
-              backgroundColor: "#E8F6ED",
+              width: "90%",
+              alignSelf:"center",
+              backgroundColor: "#DFF5E7",
               borderRadius: 22,
               padding: 14,
               shadowColor: "#000",
@@ -131,8 +133,8 @@ export default function Emotions() {
             <Text
               style={{
                 color: colors.text,
-                fontSize: 15.5,
-                lineHeight: 24,
+                fontSize: 17,
+                lineHeight: 30,
                 textAlign: "justify",
               }}
             >
