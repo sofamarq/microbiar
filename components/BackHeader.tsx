@@ -1,53 +1,38 @@
 // components/BackHeader.tsx
-import React from "react";
 import { View, Text, Pressable } from "react-native";
 import { Feather } from "@expo/vector-icons";
-import { useRouter } from "expo-router";
+import { router } from "expo-router";
 import { colors } from "./theme";
 
-type BackHeaderProps = {
-  title: string;
-  /** muestra botón atrás (router.back) */
-  back?: boolean;
-};
-
-const BackHeader: React.FC<BackHeaderProps> = ({ title, back = false }) => {
-  const router = useRouter();
-
+export default function BackHeader({ title }: { title: string }) {
   return (
-    <View
-      style={{
-        paddingTop: 60,
-        paddingBottom: 16,
-        backgroundColor: colors.primary,
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    >
-      {back && (
+    <View style={{ backgroundColor: colors.primary, paddingTop: 60, paddingBottom: 16 }}>
+      <View style={{ flexDirection: "row", alignItems: "center", paddingHorizontal: 16 }}>
+        {/* Flecha con círculo */}
         <Pressable
           onPress={() => router.back()}
           style={{
-            position: "absolute",
-            left: 16,
-            top: 60,
-            width: 36,
-            height: 36,
-            borderRadius: 18,
-            backgroundColor: "rgba(255,255,255,0.2)",
+            width: 40,
+            height: 40,
+            borderRadius: 20,
+            backgroundColor: "rgba(255,255,255,0.25)",
             alignItems: "center",
             justifyContent: "center",
           }}
         >
-          <Feather name="chevron-left" size={22} color="#fff" />
+          <Feather name="arrow-left" size={20} color="white" />
         </Pressable>
-      )}
 
-      <Text style={{ color: "white", fontWeight: "800", fontSize: 22 }}>
-        {title}
-      </Text>
+        {/* Título centrado */}
+        <View style={{ flex: 1, alignItems: "center", justifyContent: "center", pointerEvents: "none" }}>
+          <Text style={{ color: "white", fontWeight: "800", fontSize: 22 }} numberOfLines={1}>
+            {title}
+          </Text>
+        </View>
+
+        {/* Placeholder para que el título quede realmente centrado */}
+        <View style={{ width: 40 }} />
+      </View>
     </View>
   );
-};
-
-export default BackHeader;
+}
