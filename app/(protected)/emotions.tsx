@@ -1,12 +1,9 @@
-//se ve bastante feo
-
 // app/(protected)/emotions.tsx
 import { useRef, useState } from "react";
 import {
   View,
   Text,
   FlatList,
-  Image,
   Dimensions,
   NativeScrollEvent,
   NativeSyntheticEvent,
@@ -14,10 +11,10 @@ import {
 import { colors } from "../../components/theme";
 import BackHeader from "../../components/BackHeader";
 import BottomNav from "../../components/BottomNav";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import LottieView from "lottie-react-native";
 
 const { width: SCREEN_W } = Dimensions.get("window");
-const SIDE = 22; // margen lateral
+const SIDE = 22;
 
 type Slide =
   | { id: string; kind: "intro" }
@@ -29,31 +26,26 @@ const SLIDES: Slide[] = [
     id: "n1",
     kind: "note",
     text:
-      "Durante tu recorrido en este proyecto demostraste un gran compromiso con tu objetivo principal, que fue mejorar tu salud. " +
-      "Lograste adoptar nuevos hábitos alimenticios que te permitieron alcanzar cambios significativos, como dejar atrás medicamentos " +
-      "y regular mejor tu consumo de ciertos alimentos. El vínculo positivo generado con los profesionales que te acompañaron fue clave " +
-      "para afrontar los desafíos que surgieron en el camino.",
+      "Durante tu recorrido en este proyecto demostraste un gran compromiso con tu objetivo principal, que fue mejorar tu salud. Lograste adoptar nuevos hábitos alimenticios que te permitieron alcanzar cambios significativos, como dejar atrás medicamentos y regular mejor tu consumo de ciertos alimentos. El vínculo positivo generado con los profesionales que te acompañaron fue clave para afrontar los desafíos que surgieron en el camino.",
   },
   {
     id: "n2",
     kind: "note",
     text:
-      "Reconocemos el esfuerzo y la determinación que invertiste, lo que te permitió mejorar físicamente y comenzar un camino terapéutico complementario que fortaleció tu relación con la alimentación."
-
-      
+      "Reconocemos el esfuerzo y la determinación que invertiste, lo que te permitió mejorar físicamente y comenzar un camino terapéutico complementario que fortaleció tu relación con la alimentación.",
   },
   {
     id: "n3",
     kind: "note",
     text:
-      "Aunque enfrentar cambios personales importantes representó un gran desafío emocional hacia el final del proyecto, valoramos especialmente tu capacidad para reflexionar sobre estas situaciones y ajustar positivamente tu perspectiva. Observamos una clara recuperación de tu energía y motivación, manifestada en acciones concretas como retomar actividades saludables, fortalecer tu relación personal contigo misma, y priorizar tu bienestar integral."
+      "Aunque enfrentar cambios personales importantes representó un gran desafío emocional hacia el final del proyecto, valoramos especialmente tu capacidad para reflexionar sobre estas situaciones y ajustar positivamente tu perspectiva. Observamos una clara recuperación de tu energía y motivación, manifestada en acciones concretas como retomar actividades saludables, fortalecer tu relación personal contigo misma, y priorizar tu bienestar integral.",
   },
   {
     id: "n4",
     kind: "note",
     text:
-      "Te animamos a sostener estos aprendizajes y hábitos, continuando con un camino enfocado en tu salud y bienestar personal."
-  }
+      "Te animamos a sostener estos aprendizajes y hábitos, continuando con un camino enfocado en tu salud y bienestar personal.",
+  },
 ];
 
 export default function Emotions() {
@@ -67,52 +59,57 @@ export default function Emotions() {
 
   const renderItem = ({ item }: { item: Slide }) => {
     if (item.kind === "intro") {
-    return (
-      <View style={{ width: SCREEN_W }}>
-        <View
-          style={{
-            paddingHorizontal: SIDE,
-            paddingTop: 50,              // ↓ más abajo que antes
-            alignItems: "center",
-          }}
-        >
-          <Text
-            style={{
-              color: colors.text,
-              fontWeight: "800",
-              textAlign: "center",
-              fontSize: 17,              // ↑ más grande
-              lineHeight: 22,
-              marginBottom: 110,
-            }}
-          >
-            Deslizá Para Leer La Devolución{"\n"}Del Equipo De Bienestar
-          </Text>
-
-          {/* círculo con ícono de gesto */}
+      return (
+        <View style={{ width: SCREEN_W }}>
           <View
             style={{
-              width: 240,
-              height: 240,
-              borderRadius: 120,
-              backgroundColor: "#DFF5E7",
+              paddingHorizontal: SIDE,
+              paddingTop: 50,
               alignItems: "center",
-              justifyContent: "center",
-              shadowColor: "#000",
-              shadowOpacity: 0.05,
-              shadowRadius: 6,
             }}
           >
-            <MaterialCommunityIcons
-              name="gesture-swipe-horizontal" // alternativas: "gesture-swipe-right", "hand-swipe-right"
-              size={120}
-              color="#23C363"
-            />
+            <Text
+              style={{
+                color: colors.text,
+                fontWeight: "800",
+                textAlign: "center",
+                fontSize: 17,
+                lineHeight: 22,
+                marginBottom: 110,
+              }}
+            >
+              Deslizá Para Leer La Devolución{"\n"}Del Equipo De Bienestar
+            </Text>
+
+            {/* círculo con animación Lottie */}
+            <View
+              style={{
+                width: 240,
+                height: 240,
+                borderRadius: 120,
+                backgroundColor: "#DFF5E7",
+                alignItems: "center",
+                justifyContent: "center",
+                shadowColor: "#000",
+                shadowOpacity: 0.05,
+                shadowRadius: 6,
+              }}
+            >
+              <LottieView
+                source={require("../../assets/swipe.json")}
+                autoPlay
+                loop
+                style={{
+                  width: 230,
+                  height: 230,
+                  marginTop: -40, // 🔹 mueve la animación más arriba dentro del círculo
+                }}
+              />
+            </View>
           </View>
         </View>
-      </View>
-    );
-  }
+      );
+    }
 
     // Nota / devolución en tarjeta
     return (
@@ -121,7 +118,7 @@ export default function Emotions() {
           <View
             style={{
               width: "90%",
-              alignSelf:"center",
+              alignSelf: "center",
               backgroundColor: "#DFF5E7",
               borderRadius: 22,
               padding: 14,
@@ -164,12 +161,12 @@ export default function Emotions() {
       />
 
       {/* indicador + texto “Deslizá” */}
-      <View style={{ alignItems: "center", marginBottom: 55 /* ↑ más arriba */ }}>
+      <View style={{ alignItems: "center", marginBottom: 55 }}>
         <Text
           style={{
             color: colors.text,
             fontWeight: "800",
-            fontSize: 20,                 // ↑ más grande
+            fontSize: 20,
             marginBottom: 10,
           }}
         >
@@ -180,7 +177,7 @@ export default function Emotions() {
             <View
               key={i}
               style={{
-                width: i === index ? 12 : 10,    // ↑ más grandes
+                width: i === index ? 12 : 10,
                 height: i === index ? 12 : 10,
                 borderRadius: 6,
                 backgroundColor: i === index ? "#23C363" : "#B6C8BE",
